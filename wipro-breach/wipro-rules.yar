@@ -1,5 +1,5 @@
 /*
- * Wipro YARA rules to hunt for files related to the Wipro breach public IOCs.
+ * YARA rules to hunt for files related to the Wipro breach public IOCs.
  *
  * IOCs: https://krebsonsecurity.com/wp-content/uploads/2019/04/wiproiocs.txt
  * 
