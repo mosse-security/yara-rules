@@ -36,13 +36,13 @@ rule apt_ZZ_ScreenConnect_PowerShell {
     $a4 = "ScreenConnect" wide ascii fullword
 
   condition:
-    filesize < 1MB and all of them
+    (uint16(0) != 0x5A4D) and filesize < 1MB and ($a3 or ($a1 and $a2 and $a4))
 }
 
-rule apt_ZZ_ScreenConnect_EXE1 {
+rule legit_ScreenConnect_EXE1 {
   meta:
     author = "Benjamin Mossé <contact@mosse-security.com>, Mossé Security"
-    type = "APT"
+    type = "Legitimate Software"
     filetype = "Win32 EXE"
     date = "2019/04/18"
     version = "0.1"
@@ -61,17 +61,13 @@ rule apt_ZZ_ScreenConnect_EXE1 {
 
     and filesize < 1MB
 
-    and pe.number_of_sections > 0
-
-    and math.entropy(pe.sections[0].raw_data_offset, pe.sections[0].raw_data_size) > 6
-
     and all of them
 }
 
-rule apt_ZZ_ScreenConnect_EXE2 {
+rule legit_ScreenConnect_EXE2 {
   meta:
     author = "Benjamin Mossé <contact@mosse-security.com>, Mossé Security"
-    type = "APT"
+    type = "Legitimate Software"
     filetype = "Win32 EXE"
     date = "2019/04/18"
     version = "0.1"
@@ -97,10 +93,10 @@ rule apt_ZZ_ScreenConnect_EXE2 {
     and all of them
 }
 
-rule apt_ZZ_ScreenConnect_DLL1 {
+rule legit_ScreenConnect_DLL1 {
   meta:
     author = "Benjamin Mossé <contact@mosse-security.com>, Mossé Security"
-    type = "APT"
+    type = "Legitimate Software"
     filetype = "Win32 DLL"
     date = "2019/04/18"
     version = "0.1"
@@ -139,10 +135,10 @@ rule apt_ZZ_ScreenConnect_DLL1 {
     and (4 of ($a*))
 }
 
-rule apt_ZZ_ScreenConnect_DLL2 {
+rule legit_ScreenConnect_DLL2 {
   meta:
     author = "Benjamin Mossé <contact@mosse-security.com>, Mossé Security"
-    type = "APT"
+    type = "Legitimate Software"
     filetype = "Win32 DLL"
     date = "2019/04/18"
     version = "0.1"
@@ -164,19 +160,15 @@ rule apt_ZZ_ScreenConnect_DLL2 {
 
     and filesize < 1MB
 
-    and pe.number_of_sections > 0
-
-    and math.entropy(pe.sections[0].raw_data_offset, pe.sections[0].raw_data_size) > 6
-
     and (2 of ($a*))
 
     and all of ($b*)
 }
 
-rule apt_ZZ_ScreenConnect_DLL3 {
+rule legit_ScreenConnect_DLL3 {
   meta:
     author = "Benjamin Mossé <contact@mosse-security.com>, Mossé Security"
-    type = "APT"
+    type = "Legitimate Software"
     filetype = "Win32 DLL"
     date = "2019/04/18"
     version = "0.1"
@@ -195,17 +187,13 @@ rule apt_ZZ_ScreenConnect_DLL3 {
 
     and filesize < 5MB
 
-    and pe.number_of_sections > 0
-
-    and math.entropy(pe.sections[0].raw_data_offset, pe.sections[0].raw_data_size) > 6
-
     and all of them
 }
 
-rule apt_ZZ_ScreenConnect_DLL4 {
+rule legit_ScreenConnect_DLL4 {
   meta:
     author = "Benjamin Mossé <contact@mosse-security.com>, Mossé Security"
-    type = "APT"
+    type = "Legitimate Software"
     filetype = "Win32 DLL"
     date = "2019/04/18"
     version = "0.1"
@@ -222,10 +210,6 @@ rule apt_ZZ_ScreenConnect_DLL4 {
     (uint16(0) == 0x5A4D)
 
     and filesize < 1MB
-
-    and pe.number_of_sections > 0
-
-    and math.entropy(pe.sections[0].raw_data_offset, pe.sections[0].raw_data_size) > 6
 
     and all of them
 }
