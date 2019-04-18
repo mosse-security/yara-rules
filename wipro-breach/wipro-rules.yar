@@ -10,8 +10,8 @@
  * to be safe. Typical assurance recommendation is +1TB. Hence, in a large scale network, you
  * may encounter false positives.
  * 
- * Any results the results return should be validated by qualified security analysts prior to
- * asserting whether or not your organisation is affected by the Wipro network breach.
+ * Any hits should be validated by qualified security analysts prior to asserting
+ * whether or not your organisation is affected by the Wipro network breach.
  *
  * Password to extract the samples: infected
  */
