@@ -13,6 +13,10 @@
  * Any hits should be validated by qualified security analysts prior to asserting
  * whether or not your organisation is affected by the Wipro network breach.
  *
+ * If ScreenConnect is legitimately used within your environment, then some of these YARA
+ * rules will trigger. We recommend you look for additional IOCs such as the PowerShell
+ * script and the IP addresses and malicious domains shared by Mr. Brian Krebs.
+ *
  * Password to extract the samples: infected
  */
 import "math"
@@ -24,12 +28,11 @@ rule apt_ZZ_ScreenConnect_PowerShell {
     type = "APT"
     filetype = "PowerShell"
     date = "2019/04/18"
-    version = "0.1"
+    version = "0.2"
     sha256 = "38599685f23d1840533ce5cbf5bf5114e2252435d191a3d9321093ae0bb8f88b"
     reference = "https://krebsonsecurity.com/wp-content/uploads/2019/04/wiproiocs.txt"
 
   strings:
-
     $a1 = "DoNotFindMe" wide ascii fullword
     $a2 = "-Name \"ProductName\" -NewName \"XYZ\"" wide ascii
     $a3 = "SomeThingIsGood" wide ascii fullword
